@@ -1,4 +1,36 @@
 <?php
+
+
+ $link = mysqli_connect("localhost", "root", "", "operations_and_maintenance");
+
+  // get record ID
+  $id_ = $_REQUEST['username'];
+
+  // prepare query
+  $query ="SELECT  * FROM users WHERE tel_no ='$id_'";
+
+  // execute query
+  $result = mysqli_query($link,$query) or die('Server error = '.mysqli_error($link));
+
+  // get number of rows
+  $rows = mysqli_num_rows($result);
+
+  // check if there are rows'
+  if(!$rows>0){
+    // return Json
+    echo "You are not created on the system, please contact your system admin";
+  }
+
+  else if($rows>0){
+    // return Json
+   // echo makeJsonResponse($result);
+  
+
+  // close DB
+  mysqli_close($link);
+
+  // generates json response
+ $number ="254".$id_;
 $message1=rand(1234,9999);
 $message=" Your Verification code is $message1 " ;
 $GLOBALS['SMPP_ROOT'] = dirname(__FILE__); // assumes this file is in the root
@@ -8,7 +40,7 @@ require_once $GLOBALS['SMPP_ROOT'].'/transport/tsocket.class.php';
 
 // Simple debug callback
 function printDebug($str) {
-	echo date('Ymd H:i:s ').$str."\r\n";
+	//echo date('Ymd H:i:s ').$str."\r\n";
 }
 
 try {
@@ -36,11 +68,11 @@ try {
 	//$message = 'Thanks Tunya,Finnaly It has worked';
 	$encodedMessage = GsmEncoder::utf8_to_gsm0338($message);
 	$from = new SmppAddress(25420075);
-	$to = new SmppAddress(254776976172,SMPP::TON_INTERNATIONAL,SMPP::NPI_E164);
+	$to = new SmppAddress($number,SMPP::TON_INTERNATIONAL,SMPP::NPI_E164);
 	
 	// Send
 	$smpp->sendSMS($from,$to,$encodedMessage);
-	
+	echo "Otp Verification Message Sent";
 	// Close connection
 	$smpp->close();
 	
@@ -56,4 +88,5 @@ try {
 	
 	// Rethrow exception, now we are unbound or transport is closed
 	throw $e; 
+}
 }
