@@ -63,12 +63,16 @@ body {
 	padding: 14px 0;
 	text-transform: uppercase;
 	border-color: #59B2E6;
+	width:200px;
+	font-weight:bold;
+	margin:5px;
 }
 .btn-login:hover,
 .btn-login:focus {
 	color: #fff;
-	background-color: #53A3CD;
+	background-color: #ec008c;
 	border-color: #53A3CD;
+	
 }
 .forgot-password {
 	text-decoration: underline;

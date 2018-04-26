@@ -10,7 +10,7 @@ $(function () {
     $('#login_otp').on('submit', function (e) {
         if (!e.isDefaultPrevented()) {
 			
-            var url = "http://localhost/o-mapp/sendmail.php";
+            var url = "http://localhost/o-mapp/otp_validate.php";
             $.ajax({
                 type: "POST",
                 url: url,
@@ -43,9 +43,7 @@ $(function () {
 						<div class="col-xs-3">
 								
 							</div>
-							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Please Enter Your Phone Number</a>
-							</div>
+							
 							
 						</div>
 						<hr>
@@ -59,21 +57,20 @@ $(function () {
 									<div class="form-group">
 									<div class="input-group">
   <span class="input-group-addon" id="basic-addon1">+254</span>
-  <input type="text" class="form-control" placeholder="Username" name="username" aria-describedby="basic-addon1" required>
+<input type="text" class="form-control" placeholder="Phone" name="username" aria-describedby="basic-addon1" required>
 </div>
 </div>
-<div class="form-group">
+ <div class="form-group">
+
+    <input type="password" class="form-control" id="otp" name="otp" placeholder="Verification Code">
+  </div>
+
 										<div class="row">
-		
-		<div class="col-md-6">						
-<button type="submit" class="form-control btn btn-login" name="login_otp" id="login_otp" >Send Verification</button>
-</div>
-<div class="col-md-6">	
-<button type="button" class="form-control col-md-6 btn btn-login" onclick="location.href='login.php'" ><span class="glyphicon glyphicon-log-in"></span>  Login</button
-
+							
+<button type="submit" class="form-control  btn btn-login" name="login_otp" id="login_otp" >Login</button
 </div>
 
-										</div>
+										
 									</div>
 									<div class="form-group">
 										

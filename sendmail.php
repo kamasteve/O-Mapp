@@ -5,7 +5,7 @@
 
   // get record ID
   $id_ = $_REQUEST['username'];
-
+ 
   // prepare query
   $query ="SELECT  * FROM users WHERE tel_no ='$id_'";
 
@@ -24,15 +24,23 @@
   else if($rows>0){
     // return Json
    // echo makeJsonResponse($result);
-  
+    $number ="254".$id_;
+$message1=rand(1234,9999);
+$message=" Your Verification code is $message1 " ;
+  $date = date('Y-m-d H:i:s', strtotime('time()+30 minutes'));
+$update_profile="UPDATE users SET otp='$message1', date='$date'where tel_no='$id_'";		
+//$query_add_expense ="INSERT into expenses (property,responsible,unit,payee,due_date,credit,details,date) VALUES('$pname','$responsible','$unit','$payee','$due_date','$amount','$details','$date')";
+$result_update_profile = mysqli_query($link, $update_profile);
 
+            if (!$result_update_profile) {
+             print "Error: " . $result_update_profile . "<br>" . mysqli_error($link);
+			}
+			
   // close DB
   mysqli_close($link);
 
   // generates json response
- $number ="254".$id_;
-$message1=rand(1234,9999);
-$message=" Your Verification code is $message1 " ;
+
 $GLOBALS['SMPP_ROOT'] = dirname(__FILE__); // assumes this file is in the root
 require_once $GLOBALS['SMPP_ROOT'].'/protocol/smppclient.class.php';
 require_once $GLOBALS['SMPP_ROOT'].'/protocol/gsmencoder.class.php';

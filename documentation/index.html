@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Simplified PHP Invoice System</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">Documentation by &ldquo;James Brandon&rdquo; v1.1</h3>
+		
+		<hr>
+		
+		<h1 class="center">Simplified PHP Invoice System</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 26/5/2015<br>
+					By: James Brandon<br>
+					Email: <a href="mailto:support@rebootdigital.co.uk">support@rebootdigital.co.uk</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing "Simplified PHP Invoice System". If you have any questions that are beyond the scope of this documentation, please feel free to submit a suport ticket <a href="http://helpdesk.rebootdigital.co.uk/">here</a>.</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#initialSetup">Initial Setup</a></li>
+			<li><a href="#databaseStructure">Database Structure</a></li>
+			<li><a href="#systemSetup">System Configuration</a></li>
+			<li><a href="#versionHistory">Version History</a></li>
+			<li><a href="#credits">Sources and Credits</a></li>
+		</ol>
+		
+		<hr>
+		
+		<h3 id="initialSetup"><strong>Initial Setup</strong> - <a href="#toc">top</a></h3>
+		<ol>
+			<li>Extract simplified-invoice-system-v1.1.zip</li>
+			<li>Upload the contents to your web hosting via FTP on your online file manager.</li>
+			<li>Change folder permissions / chmod 0777 on folders "downloads" and "invoices".</li>
+			<li>Setup / Create your database, user and password in mysql / phpmyadmin or your hosting control panel.</li>
+			<li>Import the SQL structure from the data below or import the setup.sql file within the package you extracted. <a href="#databaseStructure">see here</a></li>
+			<li>Open "includes/config.php" and configure the file with your settings. <a href="#systemSetup">System Configuration</a></li>
+			<li>Now navigate to your root installation on your browser and you will be presented with a login box.</li>
+			<li>Enter the default login details, username: admin - password: admin</li>
+			<li>That's it you all up and running!</li>
+
+		</ol>
+		<hr>
+
+		<h3 id="databaseStructure"><strong>Database Structure</strong> - <a href="#toc">top</a></h3>
+		<p>The following data is required to setup the database structure which consist of 7 different areas, customers, invoices, invoice_items, users, products and store_customers.</p>
+				
+		<p>Please copy the database structure below and import this into you database, if you prefer to import an sql file please use the setup.sql file located within the root directory.</p>
+
+		<div class="settings-info">
+			<pre>
+				<code>
+					--
+					-- Table structure for table `customers`
+					--
+
+					CREATE TABLE IF NOT EXISTS `customers` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `invoice` varchar(255) NOT NULL,
+					  `name` varchar(255) NOT NULL,
+					  `email` varchar(255) NOT NULL,
+					  `address_1` varchar(255) NOT NULL,
+					  `address_2` varchar(255) NOT NULL,
+					  `town` varchar(255) NOT NULL,
+					  `county` varchar(255) NOT NULL,
+					  `postcode` varchar(255) NOT NULL,
+					  `phone` varchar(100) NOT NULL,
+					  `name_ship` varchar(255) NOT NULL,
+					  `address_1_ship` varchar(255) NOT NULL,
+					  `address_2_ship` varchar(255) NOT NULL,
+					  `town_ship` varchar(255) NOT NULL,
+					  `county_ship` varchar(255) NOT NULL,
+					  `postcode_ship` varchar(255) NOT NULL,
+					  PRIMARY KEY (`id`)
+					) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+
+					-- --------------------------------------------------------
+
+					--
+					-- Table structure for table `invoices`
+					--
+
+					CREATE TABLE IF NOT EXISTS `invoices` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `invoice` varchar(255) NOT NULL,
+					  `custom_email` text NOT NULL,
+					  `invoice_date` varchar(255) NOT NULL,
+					  `invoice_due_date` varchar(255) NOT NULL,
+					  `subtotal` decimal(10,0) NOT NULL,
+					  `shipping` decimal(10,0) NOT NULL,
+					  `discount` decimal(10,0) NOT NULL,
+					  `vat` decimal(10,0) NOT NULL,
+					  `total` decimal(10,0) NOT NULL,
+					  `notes` text NOT NULL,
+					  `invoice_type` varchar(255) NOT NULL,
+					  `status` varchar(255) NOT NULL,
+					  PRIMARY KEY (`id`)
+					) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+
+					-- --------------------------------------------------------
+
+					--
+					-- Table structure for table `invoice_items`
+					--
+
+					CREATE TABLE IF NOT EXISTS `invoice_items` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `invoice` varchar(255) NOT NULL,
+					  `product` text NOT NULL,
+					  `qty` int(11) NOT NULL,
+					  `price` varchar(255) NOT NULL,
+					  `discount` varchar(255) NOT NULL,
+					  `subtotal` varchar(255) NOT NULL,
+					  PRIMARY KEY (`id`)
+					) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+
+					-- --------------------------------------------------------
+
+					--
+					-- Table structure for table `products`
+					--
+
+					CREATE TABLE IF NOT EXISTS `products` (
+					  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+					  `product_name` text NOT NULL,
+					  `product_desc` text NOT NULL,
+					  `product_price` varchar(255) DEFAULT NULL,
+					  PRIMARY KEY (`product_id`)
+					) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=979 ;
+
+					-- --------------------------------------------------------
+
+					--
+					-- Table structure for table `store_customers`
+					--
+
+					CREATE TABLE IF NOT EXISTS `store_customers` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `name` varchar(255) NOT NULL,
+					  `email` varchar(255) NOT NULL,
+					  `address_1` varchar(255) NOT NULL,
+					  `address_2` varchar(255) NOT NULL,
+					  `town` varchar(255) NOT NULL,
+					  `county` varchar(255) NOT NULL,
+					  `postcode` varchar(255) NOT NULL,
+					  `phone` varchar(100) NOT NULL,
+					  `name_ship` varchar(255) NOT NULL,
+					  `address_1_ship` varchar(255) NOT NULL,
+					  `address_2_ship` varchar(255) NOT NULL,
+					  `town_ship` varchar(255) NOT NULL,
+					  `county_ship` varchar(255) NOT NULL,
+					  `postcode_ship` varchar(255) NOT NULL,
+					  PRIMARY KEY (`id`)
+					) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+
+					-- --------------------------------------------------------
+
+					--
+					-- Table structure for table `users`
+					--
+
+					CREATE TABLE IF NOT EXISTS `users` (
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `name` varchar(255) NOT NULL,
+					  `username` varchar(100) NOT NULL,
+					  `email` varchar(100) NOT NULL,
+					  `phone` varchar(100) NOT NULL,
+					  `password` varchar(200) NOT NULL,
+					  PRIMARY KEY (`id`)
+					) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+					INSERT INTO `users` (`id`, `name`, `username`, `email`, `phone`, `password`) VALUES (1, 'Joe Bloggs', 'admin', 'admin@yourdomain.co.uk', '0800 000 000', '21232f297a57a5a743894a0e4a801fc3');
+				</code>
+			</pre>
+		</div>
+
+		<p>If you require any help with setting up the database please do feel free to submit a support ticket <a href="http://helpdesk.rebootdigital.co.uk/" target="_blank">here</a></p>
+
+		<hr>
+
+		<h3 id="systemSetup"><strong>System Setup</strong> - <a href="#toc">top</a></h3>
+
+		<p>So we have a configuration file (config.php) which is located in "includes/" within the root diectory. In this file you will notice a load of settings which are required in order to fully operate and customise your invoice portal.</p> 
+
+		<p>Configurations are built using CONSTANTS so you can easily define your settings which will be used throuhout the system when required, please continue reading below for more details on each setting / constant.</p>  
+
+		<h4>Database Configuration:</h4>
+		<div class="settings-info">
+			<pre>
+				<code>
+					// DATABASE INFORMATION
+					define('DATABASE_HOST', 'localhost');
+					define('DATABASE_NAME', 'database_name');
+					define('DATABASE_USER', 'database_user');
+					define('DATABASE_PASS', 'u;{0@XsWkh7s');
+				</code>
+			</pre>
+			<ol>
+				<li><strong>DATABASE_HOST</strong> This is the hostname of your database (localhost) is normally used by default but some hosts require to use a defined hostname so please check with your hosting provider.</li>
+				<li><strong>DATABASE_NAME</strong> This is the name of your database, your host would normally provide this or you would know this when you setup the database via your control panel on your hosting.</li>
+				<li><strong>DATABASE_USER</strong> This is the username assigned to your database.</li>
+				<li><strong>DATABASE_PASS</strong> This is the password for your username on your database.</li>
+			</ol>
+		</div>
+
+		<h4>Companny Configuation:</h4>
+		<div class="settings-info">
+			<pre>
+				<code>
+					// COMPANY INFORMATION
+					define('COMPANY_LOGO', 'images/logo.png');
+					define('COMPANY_LOGO_WIDTH', '356');
+					define('COMPANY_LOGO_HEIGHT', '95');
+					define('COMPANY_NAME','Company Name Ltd');
+					define('COMPANY_ADDRESS_1','123 Something Street');
+					define('COMPANY_ADDRESS_2','Unit 5C, Office 14');
+					define('COMPANY_ADDRESS_3','Camdem');
+					define('COMPANY_COUNTY','London');
+					define('COMPANY_POSTCODE','E17 8EE');
+
+					define('COMPANY_NUMBER','Company No: 48486468'); // Company registration number
+					define('COMPANY_VAT', 'Company VAT: 468546846'); // Company TAX/VAT number
+				</code>
+			</pre>
+
+			<ol>
+				<li><strong>COMPANY_LOGO</strong> Set the path to your logo here | default: 'images/logo.php'.</li>
+				<li><strong>COMPANY_LOGO_WIDTH</strong> Set the width of your logo.</li>
+				<li><strong>COMPANY_LOGO_HEIGHT</strong> Set the height of your logo.</li>
+				<li><strong>COMPANY_NAME</strong> Enter your company name.</li>
+				<li><strong>COMPANY_ADDRESS_1</strong> First line of your company address.</li>
+				<li><strong>COMPANY_ADDRESS_2</strong> Second line of your company address. (not required)</li>
+				<li><strong>COMPANY_ADDRESS_3</strong> Third line of your company address. (not required)</li>
+				<li><strong>COMPANY_COUNTY</strong> County / State of your company address.</li>
+				<li><strong>COMPANY_POSTCODE</strong> Postcode / Zipcode of your company address.</li>
+				<li><strong>COMPANY_NUMBER</strong> Company registration number. (not required)</li>
+				<li><strong>COMPANY_VAT</strong> Company VAT / TAX Number. (not required)</li>
+			</ol>
+		</div>
+
+		<h4>Email Configuration:</h4>
+		<div class="settings-info">
+			<pre>
+				<code>
+					// EMAIL DETAILS
+					define('EMAIL_FROM', 'sales@domain.com'); // Email address invoice emails will be sent from
+					define('EMAIL_NAME', 'Company Name Ltd'); // Email from address
+					define('EMAIL_SUBJECT', 'Invoice subject'); // Invoice email subject
+					define('EMAIL_BODY_INVOICE', 'Invoice body'); // Invoice email body
+					define('EMAIL_BODY_QUOTE', 'Invoice body'); // Invoice email body
+					define('EMAIL_BODY_RECEIPT', 'Invoice body'); // Invoice email body
+				</code>
+			</pre>
+
+			<ol>
+				<li><strong>EMAIL_FROM</strong> Set the email address you wish invoices to be sent from.</li>
+				<li><strong>EMAIL_NAME</strong> Set the name that will appear when emails are sent.</li>
+				<li><strong>EMAIL_SUBJECT</strong> Email subject for invoice types.</li>
+				<li><strong>EMAIL_BODY_INVOICE</strong> Set a unqiue email body for the invoice type emails.</li>
+				<li><strong>EMAIL_BODY_QUOTE</strong> Set a unqiue email body for the quote type emails.</li>
+				<li><strong>EMAIL_BODY_RECEIPT</strong> Set a unqiue email body for the receipt type emails.</li>
+			</ol>
+		</div>
+
+		<h4>Other Configurations:</h4>
+		<div class="settings-info">
+			<pre>
+				<code>
+					// OTHER SETTINFS
+					define('INVOICE_PREFIX', 'SSJ'); // Prefix at start of invoice - leave empty '' for no prefix
+					define('INVOICE_INITIAL_VALUE', '1000'); // Initial invoice order number (start of increment)
+					define('INVOICE_THEME', '#222222'); // Theme colour, this sets a colour theme for the PDF generate invoice
+					define('TIMEZONE', 'Europe/London'); // Timezone - See for list of Timezone's http://php.net/manual/en/function.date-default-timezone-set.php
+					define('DATE_FORMAT', 'DD/MM/YYYY'); // DD/MM/YYYY or MM/DD/YYYY
+					define('CURRENCY', '£'); // Currency symbol
+					define('ENABLE_VAT', true); // Enable TAX/VAT
+					define('VAT_INCLUDED', false); // Is VAT included or excluded?
+					define('VAT_RATE', '20'); // This is the percentage value
+
+					define('PAYMENT_DETAILS', 'Company Name Ltd: Sort Code: 00-00-00, Account Number: 12345678'); // Payment information
+					define('FOOTER_NOTE', 'http://www.yourdomain.co.uk/');
+				</code>
+			</pre>
+
+			<ol>
+				<li><strong>INVOICE_PREFIX</strong> Enter a PREFIX which will appear at the beginning of your invoice number, leave blank for no PREFIX.</li>
+				<li><strong>INVOICE_INITIAL_VALUE</strong> If you wish to start your invoice from a defined number you can set it here, example: 73284 and invoices will start from that pont and increase by 1 each time.</li>
+				<li><strong>INVOICE_THEME</strong> Set the colour here for your invoice theme.</li>
+				<li><strong>TIMEZONE</strong> Set your timezone here, see: http://php.net/manual/en/function.date-default-timezone-set.php</li>
+				<li><strong>DATE_FORMAT</strong> Set the data format here either DD/MM/YYY or MM/DD/YYYY</li>
+				<li><strong>CURRENCY</strong> Set your currency symbol here | default: &pound;</li>
+				<li><strong>ENABLE_VAT</strong> Enable or disable VAT / TAX here | true or false</li>
+				<li><strong>VAT_INCLUDED</strong> Is VAT / TAX included in the product price? | true or false</li>
+				<li><strong>VAT_RATE</strong> Set the VAT / TAX % rate here | default: 20</li>
+				<li><strong>PAYMENT_DETAILS</strong> Enter payment information here, this will display at the footer of your invoice.</li>
+				<li><strong>FOOTER_NOTE</strong> You can set a footer note here, this can be whatever you want.</li>
+			</ol>
+		</div>
+		
+		<hr>
+			
+		<h3 id="versionHistory">Version History</h3>
+		<div class="settings-info">
+			<pre>
+				<code>
+					v1.1
+
+					[UPDATED] Updated mysqli Queries to prepare statements to better prevent the possibility of SQL Injections.
+					[REMOVED] Removed new mysqi connections within all actions in response file as were not needed.
+					[FIXED] Fixed response messages that were out of the container and causing layout issues.
+					[ADDED] Invoice Type: Added 3 seperate email bodies for each invoice type.
+					[ADDED] Custom email body option above create invoice, overrides defaults for that invoice.
+					[TODO] Add payment terms (select from terms or enter manually) under order notes.
+					[FIXED] Fixed Generate CSV so orders are not separated but onto 1 line with all invoice data.
+					[ADDED] Remove VAT checkbox to remove VAT from invoice and product sub-totals.
+					[FIXED] Invoice discount issue when editing invoice.
+					[ADDED] Enable system calculate VAT ex VAT and not VAT included.
+					[ADDED] Add VAT for shipping cost.
+					[ADDED] Make QTY Input wider to displays larger digits.
+					[ADDED] Custom email body option above create invoice, overrides defaults for that invoice.
+					[ADDED] Added ability to modify users.
+					[ADDED] Added password strength functionality.
+					[ADDED] Added Name field to users.
+					[UPDATED] Login / User registration and User update updated.
+
+					v1.0
+
+					[ADDED] Ability to create invoices.
+					[ADDED] Ability to manage invoices.
+					[ADDED] Added functionality to email / download invoice.
+					[ADDED] Added functionality to calculate invoice totals.
+					[ADDED] Added functionality for VAT/TAX (inc/ex) enable / disable.
+					[ADDED] Added shipping cost and calculations.
+					[ADDED] Ability to create customers.
+					[ADDED] Ability to manage customers.
+					[ADDED] Ability to create items / products.
+					[ADDED] Ability to manage items / products.
+					[ADDED] Added user management to access system.
+					[ADDED] Generate and download customer / order CSV.
+					[ADDED] Order statuses open / paid.
+					[ADDED] Configuration file to configure system settings. (see docs)
+				</code>
+			</pre>
+		</div>
+		
+		<hr>
+
+		<h3 id="credits"><strong>Sources and Credits</strong> - <a href="#toc">top</a></h3>
+				
+		<ul>
+			<li>jQuery</li>
+			<li>Bootstrap</li>
+			<li>PHPMailer Class</li>
+		</ul>
+		
+		<hr>
+		
+		<p>Once again, thank you so much for purchasing "Simplified PHP Invoice System".</p> 
+		
+		<p class="append-bottom alt large"><strong>Reboot Digital</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
