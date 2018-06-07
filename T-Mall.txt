@@ -1,0 +1,56 @@
+KEY POINTS
+  Move Postpaid Customer Journey
+  Update of Customer Details and MFS KYC
+  Biashara Talk
+  MSISDN Lifecycle
+  Blocked Orders
+  Active SIMS
+
+PROCEDURE OF EVENTS
+   Introduction
+   Expectation
+   Key Points
+         Break
+   Other Slides
+         Break
+   Questions and Challenges
+   Thank you & Hand-holding
+    END
+	
+	
+	- Postpaid
+	- Searchning a line number using the serial number
+	- Receipting Bank Charges
+	- Bulk SMS
+	- Reporting - sim life cycle 
+	
+	Concerns From T-MALL Telkom Shop
+	- Daily Collection reports
+	- Search using serial number on 360 degrees view
+	- CRM is very slow and the desktops machine are senile
+	- Receipting Bank Charges
+	- Bulk Receipting
+	- Bulk Activation 
+	- Enhancement of postpaid activation process- (Repetition of customer details)
+	- All Sim status should be visible on CRM 360 View
+	- Bill payment duplication mistake (Not to allow Same number twice on Bill Receipting)
+    - Removal of unnecessary inventory from dropdown list.
+	- More Agents to be given rights for MFS KYC Update.
+	- Inventory Status Report and Inventory Detailed Report not Tallying
+
+	
+
+The rest of the time was used for hand-holding and resolving shop issues. Most of the issues have been resolved at the shop.
+
+Below are some of the global concerns raised. Some are non CRM/POS concerns, we will classify and share with concerned parties:
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	

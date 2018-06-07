@@ -1,43 +1,20 @@
 <?php
-/*******************************************************************************
-* Simplified PHP Invoice System                                                *
-*                                                                              *
-* Version: 1.1.1	                                                               *
-* Author:  James Brandon                                    				   *
-*******************************************************************************/
-
-
-include('includes/config.php');
-// Connect to the database
-$mysqli = new mysqli(DATABASE_HOST, DATABASE_USER, DATABASE_PASS, DATABASE_NAME);
-
-// output any connection error
-if ($mysqli->connect_error) {
-	die('Error : ('.$mysqli->connect_errno .') '. $mysqli->connect_error);
-}
-
+ $link = mysqli_connect("localhost", "root", "", "operations_and_maintenance");
+//5gy
+$user_email = trim($_POST['email']);
+$user_password = trim($_POST['password']);
+$sql = "SELECT tel_no,E_NAME,USERNAME,otp FROM users WHERE tel_no='$user_email'";
+$resultset = mysqli_query($link, $sql) or die("database error:". mysqli_error($link));
+$row = mysqli_fetch_assoc($resultset);
+if($row['otp']==$user_password){
+echo "success";
 session_start();
-if($_POST['username'] != "" && $_POST['password'] != "") {
-    extract($_POST);
-
-    $username = mysqli_real_escape_string($mysqli,$_POST['username']);
-    $pass_encrypt = mysqli_real_escape_string($mysqli,$_POST['password']);
-
-    $fetch = $mysqli->query("SELECT * FROM `users` WHERE username='$username' AND `password` = '$pass_encrypt'");
-
-    $row = mysqli_fetch_array($fetch);
-
-    if (password_verify($pass_encrypt, $row['passowrd']) {
-        $_SESSION['login_username'] = $row['username'];    
-        echo 1;  
-    } else {
-        echo 0;
-    }
-
+$_SESSION['user_session'] = $row['E_NAME'];
+$_SESSION['tel_no'] = $row['tel_no'];
+$_SESSION['USERNAME'] = $row['USERNAME'];
+//header("location:dashboard.php");
 } else {
-
-    header("Location:index.php");
+echo "fail"; // wrong details
 
 }
 ?>
-

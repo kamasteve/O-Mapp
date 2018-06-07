@@ -6,13 +6,13 @@
 * Author:  James Brandon                                    				   *
 *******************************************************************************/
 
-include('includes/header.php');
-//include('functions.php');
+include('header.php');
+include('functions.php');
 
 ?>
 
   <?php
-//include('left_sidebar.php');
+include('left_sidebar.php');
 ?>
 
 

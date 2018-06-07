@@ -1,17 +1,38 @@
-body {
-    padding-top: 90px;
+/*******************************************************************************
+* Simplified PHP Invoice System                                                *
+*                                                                              *
+* Version: 1.1.1	                                                               *
+* Author:  James Brandon                                    				   *
+*******************************************************************************/
+.image-responsive {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #3D3D3D;
+	 background: url(../images/bts1.jpg)  !important; 
+	  background-position: center;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ opacity:0.95;
 }
 .panel-login {
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	margin-top:150px; 
+
 }
 .panel-login>.panel-heading {
 	color: #00415d;
 	background-color: #fff;
 	border-color: #fff;
 	text-align:center;
+	
 }
 .panel-login>.panel-heading a{
 	text-decoration: none;
@@ -22,8 +43,26 @@ body {
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
+Label{
+font-weight: normal !important;	
+}
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #ec008c;
+    border: 0;
+        border-bottom-width: 0px;
+        border-bottom-style: none;
+        border-bottom-color: currentcolor;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: left;
+}
 .panel-login>.panel-heading a.active{
-	color: #029f5b;
+	color: #00aac9;
 	font-size: 18px;
 }
 .panel-login>.panel-heading hr{
@@ -44,6 +83,25 @@ body {
 	-webkit-transition: all 0.1s linear;
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
+}
+.form-control{
+width:500px;
+
+}
+.alert-dismissable {
+    padding-right: 35px;
+    background: #d9edf7;
+}
+.panel-default {
+    border-color: #ddd;
+    width: 66%;
+	margin-left: 10px;
+}
+.btn{
+background-color: #ec008c;
+outline: none;
+color: #fff;
+font-size: 14px;
 }
 .panel-login input:hover,
 .panel-login input:focus {
@@ -101,3 +159,120 @@ body {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+
+.clear { 
+	clear: both;
+}
+
+.panel-body {
+	padding: 15px 15px 0 15px;
+}
+
+.float-left {
+	float: left !important;
+}
+
+.float-right {
+	float: right !important;
+}
+
+.margin-bottom {
+	margin-bottom: 1em;
+}
+
+.margin-top {
+	
+}
+
+.padding-right {
+	padding-right: 15px;
+}
+
+.no-padding-right {
+	padding-right: 0;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0;
+}
+
+.user {
+	margin-top: 8px;
+	margin-right: 10px;
+}
+
+/* Forms */
+input.shipping {
+	text-align: right;
+}
+.custom_email_textarea {
+	width: 100%;
+	padding: 10px;
+}
+#invoice_status,
+#invoice_type {
+	margin-top: 23px;
+}
+
+.invoice_product_qty {
+	width: 50px;
+	text-align: center;
+}
+.invoice_type {
+	text-transform: uppercase;
+}
+
+.select-customer {
+	margin-top: 10px;
+}
+
+.delete-row {
+	float: left;
+	margin-top: 4px;
+}
+
+.item-select {
+	float: left;
+	margin: 4px;
+}
+
+.item-input {
+	float:  left;
+	width: 65%;
+	margin-left: 10px;
+}
+
+.textarea {
+	width: 100%;
+}
+
+.textarea textarea {
+	width: 100%;
+	padding: 10px;
+	resize: none;
+}
+
+/* Other styles */
+strong.shipping {
+	margin-top: 4px;
+	display: block;
+}
+
+/* Progress bar */
+.progress .bar {
+	display: block;
+	height: 20px;
+}
+.error-list {
+	display: none;
+}
+.progress.progress-danger .bar {
+	background-color: #c13333;
+}
+.progress.progress-warning .bar {
+	background-color: #c1bf33;
+}
+.progress.progress-success .bar {
+	background-color: #33c133;
+}
+

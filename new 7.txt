@@ -1,0 +1,25 @@
+Notes on the Communication Engineer Assigmnment
+
+B.  Proposed System 
+In the proposed system, the post paid energy meters are replaced by digital energy meters having communication option. 
+By using modbus communication  of the digital energy  meters,  all meters 
+can be monitored online on centralized SCADA. As the 
+meter   reading   is   recorded    automatically    by   the 
+SCADA. So, there is no chance of human errors.  
+The   whole   proposed   system   is   prepaid   and   the 
+consumer has to pay before using the electricity. 
+C.   Automatic Meter Reading (AMR) System
+Automatic meter reading system is a technology which 
+is  used  to  gather  data  from  energy  metering  devices
+and transfer  it to  a central station in order to  process it 
+for  billing  purposes.  Automatic  meter  reading  system 
+helps  the  customer  and  energy  provider  to  access  the 
+accurate   and  updated   data   from   the   meters.  AMR 
+system   can   fetch   energy   consumption   in   hourly, 
+monthly,  yearly  basis on request or even in Real Time. 
+This Real time energy usage can be seen by the users to 
+control the use of power and be more economical. With 
+the  help  of  the  collected  data  the  service  provider
+  will 
+be able to send energy saving ideas to the users. 
+

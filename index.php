@@ -22,7 +22,7 @@ $(function () {
                     //alert(data);
                     var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
                     if (messageAlert && messageText) {
-                        $('#login_otp').find('.messages').html(alertBox);
+                        //$('#login_otp').find('.messages').html(alertBox);
                         //$('#edit_tentant')[0].reset();
 						
                     }
@@ -33,6 +33,7 @@ $(function () {
     })
 });
 </script>
+<body  class="image-responsive">
 
 <div class="container">
     	<div class="row">
@@ -87,3 +88,4 @@ $(function () {
 			</div>
 		</div>
 	</div>
+	</body>
